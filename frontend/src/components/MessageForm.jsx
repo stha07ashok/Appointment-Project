@@ -13,7 +13,7 @@ const MessageForm = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "hhttps://appointment-project-ouob.onrender.com/api/v1/message/send",
+        "https://appointment-project-ouob.onrender.com/api/v1/message/send",
         { firstName, lastName, email, phone, message },
         {
           withCredentials: true,
