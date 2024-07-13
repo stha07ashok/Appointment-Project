@@ -11,12 +11,9 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     await axios
-      .get(
-        "https://appointment-project-ouob.onrender.com/api/v1/user/patient/logout",
-        {
-          withCredentials: true,
-        }
-      )
+      .get("http://localhost:4000/api/v1/user/patient/logout", {
+        withCredentials: true,
+      })
       .then((res) => {
         toast.success(res.data.message);
         setIsAuthenticated(false);
