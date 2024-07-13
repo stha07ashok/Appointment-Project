@@ -23,7 +23,7 @@ const AddNewAdmin = () => {
     try {
       await axios
         .post(
-          "http://localhost:4000/api/v1/user/admin/addnew",
+          "https://appointment-project-ouob.onrender.com/api/v1/user/admin/addnew",
           { firstName, lastName, email, phone, address, dob, gender, password },
           {
             withCredentials: true,

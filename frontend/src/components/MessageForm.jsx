@@ -13,7 +13,7 @@ const MessageForm = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:4000/api/v1/message/send",
+        "hhttps://appointment-project-ouob.onrender.com/api/v1/message/send",
         { firstName, lastName, email, phone, message },
         {
           withCredentials: true,
@@ -28,7 +28,9 @@ const MessageForm = () => {
       setPhone("");
       setMessage("");
     } catch (error) {
-      const errorMessage = error.response?.data?.message || 'Something went wrong. Please try again.';
+      const errorMessage =
+        error.response?.data?.message ||
+        "Something went wrong. Please try again.";
       toast.error(errorMessage);
     }
   };

@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react';
-import { Context } from '../main';
-import { Link, useNavigate, Navigate } from 'react-router-dom';
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import React, { useContext, useState } from "react";
+import { Context } from "../main";
+import { Link, useNavigate, Navigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useContext(Context);
@@ -11,7 +11,7 @@ const Register = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState(""); 
+  const [address, setAddress] = useState("");
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
@@ -23,8 +23,18 @@ const Register = () => {
     try {
       await axios
         .post(
-          "http://localhost:4000/api/v1/user/patient/register",
-          { firstName, lastName, email, phone, address, dob, gender, password, role: "Patient" },
+          "https://appointment-project-ouob.onrender.com/api/v1/user/patient/register",
+          {
+            firstName,
+            lastName,
+            email,
+            phone,
+            address,
+            dob,
+            gender,
+            password,
+            role: "Patient",
+          },
           {
             withCredentials: true,
             headers: { "Content-Type": "application/json" },
@@ -39,7 +49,7 @@ const Register = () => {
           setLastName("");
           setEmail("");
           setPhone("");
-          setAddress(""); 
+          setAddress("");
           setDob("");
           setGender("");
           setPassword("");
@@ -92,9 +102,9 @@ const Register = () => {
           </div>
           <div>
             <input
-              type="text" 
-              placeholder="Address" 
-              value={address} 
+              type="text"
+              placeholder="Address"
+              value={address}
               onChange={(e) => setAddress(e.target.value)}
             />
             <input
@@ -139,6 +149,6 @@ const Register = () => {
       </div>
     </>
   );
-}
+};
 
 export default Register;
