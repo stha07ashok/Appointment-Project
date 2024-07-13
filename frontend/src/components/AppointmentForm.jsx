@@ -1,6 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const AppointmentForm = () => {
@@ -12,8 +11,7 @@ const AppointmentForm = () => {
   const [gender, setGender] = useState("");
   const [appointmentDate, setAppointmentDate] = useState("");
   const [department, setDepartment] = useState("pediatrics");
-  const [doctorFirstName, setDoctorFirstName] = useState("");
-  const [doctorLastName, setDoctorLastName] = useState("");
+  const [doctor, setDoctor] = useState({});
   const [address, setAddress] = useState("");
   const [hasVisited, setHasVisited] = useState(false);
 
@@ -41,6 +39,7 @@ const AppointmentForm = () => {
     };
     fetchDoctors();
   }, []);
+
   const handleAppointment = async (e) => {
     e.preventDefault();
     try {
@@ -56,8 +55,8 @@ const AppointmentForm = () => {
           gender,
           appointment_date: appointmentDate,
           department,
-          doctor_firstName: doctorFirstName,
-          doctor_lastName: doctorLastName,
+          doctor_firstName: doctor.firstName,
+          doctor_lastName: doctor.lastName,
           hasVisited: hasVisitedBool,
           address,
         },
@@ -74,10 +73,9 @@ const AppointmentForm = () => {
         setDob(""),
         setGender(""),
         setAppointmentDate(""),
-        setDepartment(""),
-        setDoctorFirstName(""),
-        setDoctorLastName(""),
-        setHasVisited(""),
+        setDepartment("pediatrics"),
+        setDoctor({}),
+        setHasVisited(false),
         setAddress("");
     } catch (error) {
       toast.error(error.response.data.message);
@@ -143,8 +141,7 @@ const AppointmentForm = () => {
               value={department}
               onChange={(e) => {
                 setDepartment(e.target.value);
-                setDoctorFirstName("");
-                setDoctorLastName("");
+                setDoctor({});
               }}
             >
               {departmentsArray.map((depart, index) => {
@@ -156,17 +153,20 @@ const AppointmentForm = () => {
               })}
             </select>
             <select
-              value={`${doctorFirstName} ${doctorLastName}`}
+              value={
+                doctor.firstName ? `${doctor.firstName} ${doctor.lastName}` : ""
+              }
               onChange={(e) => {
-                const [firstName, lastName] = e.target.value.split(" ");
-                setDoctorFirstName(firstName);
-                setDoctorLastName(lastName);
+                const selectedDoctor = doctors.find(
+                  (doc) => `${doc.firstName} ${doc.lastName}` === e.target.value
+                );
+                setDoctor(selectedDoctor || {});
               }}
               disabled={!department}
             >
               <option value="">Select Doctor</option>
               {doctors
-                //.filter((doctor) => doctor.doctorDepartment === department)
+                .filter((doctor) => doctor.doctorDepartment === department)
                 .map((doctor, index) => (
                   <option
                     value={`${doctor.firstName} ${doctor.lastName}`}
