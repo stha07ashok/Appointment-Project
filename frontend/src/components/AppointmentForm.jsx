@@ -33,7 +33,7 @@ const AppointmentForm = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       const { data } = await axios.get(
-        "https://appointment-project-ouob.onrender.com/api/v1/user/doctors",
+        "http://localhost:4000/api/v1/user/doctors",
         { withCredentials: true }
       );
       setDoctors(data.doctors);
