@@ -43,7 +43,7 @@ const Footer = () => {
         <hr />
         <div className="content">
           <div>
-            <img src="/logo.png" alt="logo" className="logo-img"/>
+            <img src="/logo.png" alt="logo" className="logo-img" />
           </div>
           <div>
             <h4>Quick Links</h4>
@@ -77,6 +77,13 @@ const Footer = () => {
             <div>
               <FaLocationArrow />
               <span>Pokhara, Nepal</span>
+            </div>
+            <h4>Developed By</h4>
+            <div>
+              <sapn>Ashok Shrestha-PAS078BCT007</sapn>
+            </div>
+            <div>
+              <sapn>Avishek Basyal-PAS078BCT008</sapn>
             </div>
           </div>
         </div>
